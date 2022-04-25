@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Vehichle index{% endblock %}
+{% block body %}
+<div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          <div class="col-md-3">
+          {% include 'vehicle/filter.html.twig' with {form:form} only %}
+          </div>
+          <div class="col-md-9">
+            <div slacc="grid">
+            {% for item in vehicles %}
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="mb-1">{{ item.uuid }}--{{item.bikeProducer}}</h5>
+                    <small>{{item.series}} | Size : {{ item.size }}</small>
+                    <small>{{item.bikeModel}} | Type of Drive : {{ item.typeofDrive }}</small>
+                    <small>{{item.country}} | Year : {{ item.year }}</small>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a href="{{path('app_vehicle_detail',{'id': item.id })}}" class="btn btn-sm btn-outline-secondary">View</a>
+                    </div>
+                    <small class="text-muted">{{item.uuid}}</small>
+                  </div>
+                </div>
+              </div>
+             {% endfor %}
+             </div>
+             </div>
+          </div>
+      {{ knp_pagination_render(vehicles)}}
+        </div>
+      </div>
+  
+
+ 
+{% endblock %}
